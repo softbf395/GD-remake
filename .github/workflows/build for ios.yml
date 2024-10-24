@@ -13,7 +13,7 @@ jobs:
       - name: Run RBXRemake build script
         run: |
           echo "Current working directory: $(pwd)"
-          ./build-ios-RBXRemake.sh
+          chmod +x ./build-ios-RBXRemake.sh
 
       - name: Upload RBXRemake IPA (if successful)
         uses: actions/upload-artifact@v3
