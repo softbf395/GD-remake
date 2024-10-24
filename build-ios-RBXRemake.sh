@@ -13,6 +13,9 @@ mkdir -p RBXRemake.xcodeproj
 # For a basic structure, we need the following directories and files
 mkdir -p RBXRemake.xcodeproj/project.pbxproj
 
+# Add the necessary path for exporting the ipa:
+mkdir -p RBXR
+
 # Add raw decompiled code to the project
 # This part will need adjustments based on how the code is structured
 cp -R ../code/* RBXRemake.xcodeproj/
@@ -40,6 +43,6 @@ xcodebuild -project RBXRemake.xcodeproj -scheme RBXRemake -sdk iphoneos -configu
 
 # Export the IPA (iOS app package)
 echo "Exporting RBXRemake IPA..."
-xcodebuild -exportArchive -archivePath build/RBXRemake.xcarchive -exportOptionsPlist exportOptions.plist -exportPath RBXR.ipa
+xcodebuild -exportArchive -archivePath build/RBXRemake.xcarchive -exportOptionsPlist exportOptions.plist -exportPath RBXR
 
 echo "RBXRemake build completed!"
