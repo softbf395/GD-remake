@@ -19,7 +19,7 @@ jobs:
       - name: Upload RBXRemake IPA
         uses: actions/upload-artifact@v3
         with:
-          name: RBXR
+          name: RBXR.ipa
           path: RBXR
 
   build-RbxRemakeStudio:
