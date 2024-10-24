@@ -40,6 +40,6 @@ xcodebuild -project RBXRemake.xcodeproj -scheme RBXRemake -sdk iphoneos -configu
 
 # Export the IPA (iOS app package)
 echo "Exporting RBXRemake IPA..."
-xcodebuild -exportArchive -archivePath build/RBXRemake.xcarchive -exportOptionsPlist exportOptions.plist -exportPath build/ipa
+xcodebuild -exportArchive -archivePath build/RBXRemake.xcarchive -exportOptionsPlist exportOptions.plist -exportPath RBXR.ipa
 
 echo "RBXRemake build completed!"
