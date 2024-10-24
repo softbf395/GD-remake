@@ -13,43 +13,8 @@ jobs:
 
       - name: Run RBXRemake iOS build script
         run: |
-          #!/bin/bash
-           cd RBXRemake/ios
-           echo "Generating Xcode project for RBXRemake..."
-           mkdir -p RBXRemake.xcodeproj
-           mkdir -p RBXR
-          cp -R RBXRemake/code
-          echo "Setting up Info.plist..."
-          cat <<EOF > RBXRemake.xcodeproj/Info.plist
-           <?xml version="1.0" encoding="UTF-8"?>
-           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-           <plist version="1.0">
-           <dict>
-                <key>CFBundleIdentifier</key>
-                <string>com.rbxremake.app</string>
-                <key>CFBundleName</key>
-                <string>RBXRemake</string>
-                <key>CFBundleVersion</key>
-                <string>1.0</string>
-           </dict>
-           </plist>
-           EOF
-           echo "Building iOS app RBXRemake without code signing..."
-           xcodebuild -project RBXRemake.xcodeproj \
-            -scheme RBXRemake \
-            -sdk iphoneos \
-            -configuration Release \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
-            PROVISIONING_PROFILE_SPECIFIER=""
-            echo "Exporting RBXRemake IPA..."
-            xcodebuild -exportArchive \
-             -archivePath build/RBXRemake.xcarchive \
-             -exportOptionsPlist exportOptions.plist \
-             -exportPath RBXR
-            echo "RBXRemake build completed!"
-
+          chmod +x ./build-ios-RBXRemake.sh
+          ./build-ios-RBXRemake.sh
       - name: Upload RBXRemake IPA
         uses: actions/upload-artifact@v3
         with:
@@ -67,7 +32,6 @@ jobs:
         run: |
           chmod +x ./build-ios-RbxStudio.sh
           ./build-ios-RbxStudio.sh
-
       - name: Upload RbxRemakeStudio IPA
         uses: actions/upload-artifact@v3
         with:
