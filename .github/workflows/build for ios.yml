@@ -19,8 +19,8 @@ jobs:
       - name: Upload RBXRemake IPA
         uses: actions/upload-artifact@v3
         with:
-          name: RBXRemake-ipa
-          path: RBXRemake/ios/build/ipa
+          name: RBXR
+          path: RBXR.ipa
 
   build-RbxRemakeStudio:
     runs-on: macos-latest
@@ -31,8 +31,8 @@ jobs:
 
       - name: Run RbxRemakeStudio iOS build script
         run: |
-          chmod +x build-ios-RbxStudio.sh
-          build-ios-RbxStudio.sh
+          chmod +x ./build-ios-RbxStudio.sh
+          ./build-ios-RbxStudio.sh
 
       - name: Upload RbxRemakeStudio IPA
         uses: actions/upload-artifact@v3
