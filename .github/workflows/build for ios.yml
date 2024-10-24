@@ -13,8 +13,8 @@ jobs:
 
       - name: Run RBXRemake iOS build script
         run: |
-          chmod +x build-ios-RBXRemake.sh
-          build-ios-RBXRemake.sh
+          chmod +x ./build-ios-RBXRemake.sh
+          ./build-ios-RBXRemake.sh
 
       - name: Upload RBXRemake IPA
         uses: actions/upload-artifact@v3
