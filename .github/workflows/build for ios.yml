@@ -18,7 +18,7 @@ jobs:
            echo "Generating Xcode project for RBXRemake..."
            mkdir -p RBXRemake.xcodeproj
            mkdir -p RBXR
-          cp -R ../code/* RBXRemake.xcodeproj/
+          cp -R RBXRemake/code
           echo "Setting up Info.plist..."
           cat <<EOF > RBXRemake.xcodeproj/Info.plist
            <?xml version="1.0" encoding="UTF-8"?>
