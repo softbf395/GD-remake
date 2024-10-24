@@ -1,39 +1,41 @@
-name: Build iOS Apps
+name: Build RBXRemake and RbxRemakeStudio iOS Apps
 
 on:
   workflow_dispatch:
 
 jobs:
-  build-RBXRemake:
+  build_rbxremake:
     runs-on: macos-latest
-
     steps:
-      - name: Checkout the repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Run RBXRemake iOS build script
+      - name: Run RBXRemake build script
         run: |
-          chmod +x ./build-ios-RBXRemake.sh
+          echo "Current working directory: $(pwd)"
           ./build-ios-RBXRemake.sh
-      - name: Upload RBXRemake IPA
+
+      - name: Upload RBXRemake IPA (if successful)
         uses: actions/upload-artifact@v3
+        if: success()
         with:
           name: RBXRemake-ipa
           path: RBXR/RBXRemake.ipa
 
-  build-RbxRemakeStudio:
+  build_rbxremakestudio:
     runs-on: macos-latest
-
     steps:
-      - name: Checkout the repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Run RbxRemakeStudio iOS build script
+      - name: Run RbxRemakeStudio build script
         run: |
-          chmod +x ./build-ios-RbxStudio.sh
-          ./build-ios-RbxStudio.sh
-      - name: Upload RbxRemakeStudio IPA
+          echo "Current working directory: $(pwd)"
+          ./build-ios-RbxRemakeStudio.sh
+
+      - name: Upload RbxRemakeStudio IPA (if successful)
         uses: actions/upload-artifact@v3
+        if: success()
         with:
           name: RbxRemakeStudio-ipa
           path: RbxRemakeStudio/ios/build/ipa
