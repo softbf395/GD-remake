@@ -6,18 +6,13 @@ cd RBXRemake/ios
 # Generate Xcode project from raw source
 echo "Generating Xcode project for RBXRemake..."
 
-# Create the .xcodeproj folder structure manually or use CMake if the project supports it
+# Optional: Create the .xcodeproj folder structure manually or use CMake if the project supports it
 mkdir -p RBXRemake.xcodeproj
 
-# Add all the necessary files to the xcodeproj (this is highly project-dependent)
-# For a basic structure, we need the following directories and files
-mkdir -p RBXRemake.xcodeproj/project.pbxproj
-
-# Add the necessary path for exporting the ipa:
+# Add the necessary path for exporting the IPA:
 mkdir -p RBXR
 
 # Add raw decompiled code to the project
-# This part will need adjustments based on how the code is structured
 cp -R ../code/* RBXRemake.xcodeproj/
 
 # Optional: create Info.plist and configure Bundle ID
@@ -37,12 +32,22 @@ cat <<EOF > RBXRemake.xcodeproj/Info.plist
 </plist>
 EOF
 
-# Build the app using xcodebuild (the shell script should be run in GitHub Actions)
-echo "Building iOS app RBXRemake..."
-xcodebuild -project RBXRemake.xcodeproj -scheme RBXRemake -sdk iphoneos -configuration Release
+# Build the app without code signing
+echo "Building iOS app RBXRemake without code signing..."
+xcodebuild -project RBXRemake.xcodeproj \
+  -scheme RBXRemake \
+  -sdk iphoneos \
+  -configuration Release \
+  CODE_SIGN_IDENTITY="" \
+  CODE_SIGNING_REQUIRED=NO \
+  CODE_SIGNING_ALLOWED=NO \
+  PROVISIONING_PROFILE_SPECIFIER=""
 
-# Export the IPA (iOS app package)
+# Export the IPA
 echo "Exporting RBXRemake IPA..."
-xcodebuild -exportArchive -archivePath build/RBXRemake.xcarchive -exportOptionsPlist exportOptions.plist -exportPath RBXR
+xcodebuild -exportArchive \
+  -archivePath build/RBXRemake.xcarchive \
+  -exportOptionsPlist exportOptions.plist \
+  -exportPath RBXR
 
 echo "RBXRemake build completed!"
