@@ -1,8 +1,7 @@
 name: Build RBXRemake and RbxRemakeStudio iOS Apps
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build_both_apps:
@@ -11,9 +10,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Give Build Script chmod
+        run: chmod +x ./build_ios_apps.sh
+
       - name: Run build script
         run: ./build_ios_apps.sh
-        id: build_script_output
 
       - name: Upload RBXRemake IPA (if successful)
         uses: actions/upload-artifact@v3
