@@ -55,4 +55,4 @@ EOF
 
 # Build RBXRemake and RbxRemakeStudio
 build_ios_app "RBXRemake"
-build_ios_app "RbxRemakeStudio"
+# build_ios_app "RbxRemakeStudio" temporarily removed for testing!
