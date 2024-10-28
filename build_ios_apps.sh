@@ -47,7 +47,7 @@ EOF
   xcodebuild -exportArchive \
       -archivePath "build/$project_name.xcarchive" \
       -exportOptionsPlist exportOptions.plist \
-      -exportPath RBXR
+      -exportPath $ipa_path
 
   echo "IPA path: $ipa_path"
   echo "$ipa_path"  # Return the IPA path
