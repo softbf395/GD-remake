@@ -21,7 +21,7 @@ jobs:
         if: success() && jobs.build_both_apps.status == 'success'
         with:
           name: RBXRemake-ipa
-          path: ${{ jobs.build_script_output.outputs.rbxremake_ipa_path }}
+          path: RBXR
 
       - name: Upload RbxRemakeStudio IPA (if successful)
         uses: actions/upload-artifact@v3
