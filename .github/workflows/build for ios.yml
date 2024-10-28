@@ -22,10 +22,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: RBXRemake-ipa
-          path: RBXR/App.ipa
+          path: RBXR/RBXRemake.ipa
 
-      - name: Upload RbxRemakeStudio IPA (if successful)
-        uses: actions/upload-artifact@v3
-        with:
-          name: RbxRemakeStudio-ipa
-          path: RBXR/Studio.ipa
+      #- name: Upload RbxRemakeStudio IPA (if successful)
+      #  uses: actions/upload-artifact@v3
+      #  with:
+       #   name: RbxRemakeStudio-ipa
+      #    path: RBXR/Studio.ipa
