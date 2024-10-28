@@ -18,14 +18,12 @@ jobs:
 
       - name: Upload RBXRemake IPA (if successful)
         uses: actions/upload-artifact@v3
-        if: success() && jobs.build_both_apps.status == 'success'
         with:
           name: RBXRemake-ipa
           path: RBXR/App.ipa
 
       - name: Upload RbxRemakeStudio IPA (if successful)
         uses: actions/upload-artifact@v3
-        if: success() && jobs.build_both_apps.status == 'success'
         with:
           name: RbxRemakeStudio-ipa
           path: RBXR/Studio.ipa
