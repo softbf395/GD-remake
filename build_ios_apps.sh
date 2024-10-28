@@ -21,7 +21,7 @@ create_pbxproj() {
         ORGANIZATIONNAME = "RBXRemake Co (family project)"; // Replace with your organization name
       };
       buildConfigurationList = 1E0C65F21CFC2289001FAAA9 /* Build configuration list */;
-      compatibilityVersion = "Xcode 14.0";
+      compatibilityVersion = "Xcode 15.6";
       mainGroup = 1E0C65F21CFC2289001FAAA9 /* Source Files */;
       productRefGroup = 1E0C65F31CFC2289001FAAA9 /* Products */;
       targets = (
