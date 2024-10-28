@@ -53,9 +53,6 @@ build_ios_app() {
   echo "$ipa_path"  # Return the IPA path
 }
 
-# Grant execution permissions to the script
-chmod +x build_ios_apps.sh
-
 # Build RBXRemake and RbxRemakeStudio
 build_ios_app RBXRemake
 build_ios_app RbxRemakeStudio
