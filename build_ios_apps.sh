@@ -3,7 +3,7 @@
 # Function to build an iOS app
 build_ios_app() {
   local project_name="$1"
-  local ipa_path="RBXR/$project_name.ipa"
+  local ipa_path="RBXR/$project_name"
 
   # Navigate to the iOS folder
   cd $project_name/ios
@@ -54,5 +54,5 @@ build_ios_app() {
 }
 
 # Build RBXRemake and RbxRemakeStudio
-build_ios_app RBXRemake
-build_ios_app RbxRemakeStudio
+build_ios_app RBXRemake.ipa
+build_ios_app RbxRemakeStudio.ipa
