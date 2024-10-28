@@ -17,6 +17,10 @@ jobs:
 
       - name: Run build script
         run: ./build_ios_apps.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          
 
       - name: Upload RBXRemake IPA (if successful)
         uses: actions/upload-artifact@v3
