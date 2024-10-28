@@ -10,9 +10,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Give Build Script chmod
-        run: chmod +x ./build_ios_apps.sh
-
       - name: Run build script
         run: ./build_ios_apps.sh
 
