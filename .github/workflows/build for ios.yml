@@ -6,6 +6,8 @@ on:
 jobs:
   build_both_apps:
     runs-on: macos-latest
+    env:
+      ACTIONS_SETUP_DEBUG: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
