@@ -1,9 +1,6 @@
 name: Decrypt Geometry Dash Levels
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
