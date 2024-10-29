@@ -45,7 +45,7 @@ EOF
   # Build the app without code signing
   echo "Building iOS app $project_name..."
   # xcodebuild -list "$project_name.xcodeproj"
-  xcodebuild -project "$project_name.xcodeproj" \
+  xcodebuild -workspace "$project_name.xcodeproj/project.xcworkspace" \
       -sdk iphoneos \
       -scheme "MyApp" \
       -configuration Release \
@@ -67,5 +67,5 @@ EOF
 }
 
 # Build RBXRemake
-build_ios_app "RBXRemake"
-# build_ios_app "RbxRemakeStudio" temporarily removed for testing!
+build_ios_app "GDRemake"
+# build_ios_app "GDRemakeAssetsCreator" temporarily removed for testing! (AssetsCreator is the filename for Trigger Creator)
