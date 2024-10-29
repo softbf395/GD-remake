@@ -1,0 +1,36 @@
+name: Build iOS xcodeproj
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_both_apps:
+    runs-on: macos-latest
+    env:
+      ACTIONS_SETUP_DEBUG: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Initialize Build
+        run: |
+          brew install xcodegen
+
+      - name: Run build script
+        run: |
+          cd RBXRemake/ios
+          xcodegen generate
+
+          
+
+      - name: Upload RBXRemake IPA (if successful)
+        uses: actions/upload-artifact@v3
+        with:
+          name: RBXRemake-ipa
+          path: RBXRemake/ios/RBXRemake.xcodeproj
+
+      #- name: Upload RbxRemakeStudio IPA (if successful)
+      #  uses: actions/upload-artifact@v3
+      #  with:
+       #   name: RbxRemakeStudio-ipa
+      #    path: RBXR/Studio.ipa
