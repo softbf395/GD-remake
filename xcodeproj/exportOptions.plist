@@ -3,23 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>method</key>
-    <string>ad-hoc</string> <!-- You can also use 'ad-hoc' for non-store distribution or 'enterprise' if applicable -->
+    <string>ad-hoc</string>
+    <key>teamID</key>
+    <string></string>
+    <key>signingCertificate</key>
+    <string></string>
     <key>provisioningProfiles</key>
     <dict>
-        <key>com.rbxremake.app</key> <!-- Replace with your app's bundle identifier -->
-        <string>Automatic</string> <!-- Automatically use a provisioning profile -->
     </dict>
-    <key>signingStyle</key>
-    <string>automtic</string> <!-- Set this to 'manual' if you're providing certificates, otherwise 'automatic' -->
-    <key>compileBitcode</key>
-    <false/> <!-- Bitcode compilation is not required -->
-    <key>signingCertificate</key>
-    <string>-</string> <!-- Leave empty or dash if no certificate is used -->
-    <key>teamID</key>
-    <string></string> <!-- Leave this empty to avoid team ID requirements -->
-    <key>stripSwiftSymbols</key>
-    <true/> <!-- Strips Swift symbols if your project uses Swift -->
-    <key>thinning</key>
-    <string>&lt;none&gt;</string> <!-- No thinning (default) -->
 </dict>
 </plist>
