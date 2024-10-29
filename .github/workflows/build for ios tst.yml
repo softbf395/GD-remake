@@ -43,8 +43,8 @@ jobs:
             -archivePath "build/$project_name.xcarchive" \
           -exportOptionsPlist exportOptions.plist \
           -exportPath "$ipa_path"
-         echo "$ipa_path"  # Return the IPA path
-         }
+           echo "$ipa_path"  # Return the IPA path
+          }
           build_ios_app "RBXRemake"
 
 
