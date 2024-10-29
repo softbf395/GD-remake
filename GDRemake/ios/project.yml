@@ -1,8 +1,8 @@
-name: RBXRemake
+name: GDRemake
 #include:
  # - base_spec.yml
 options:
-  bundleIdPrefix: com.RBXRemake
+  bundleIdPrefix: com.GDRemake
 packages:
   Yams:
     url: https://github.com/jpsim/Yams
@@ -29,4 +29,4 @@ targets:
   MyFramework:
     type: framework
     platform: iOS
-    sources: [RBXRemakeFramework]
+    sources: [GDRemHook]
