@@ -1,6 +1,6 @@
 name: RBXRemake
-include:
-  - base_spec.yml
+#include:
+ # - base_spec.yml
 options:
   bundleIdPrefix: com.RBXRemake
 packages:
