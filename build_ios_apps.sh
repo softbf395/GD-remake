@@ -47,7 +47,7 @@ EOF
   # xcodebuild -list "$project_name.xcodeproj"
   xcodebuild -project "$project_name.xcodeproj" \
       -sdk iphoneos \
-      -scheme "Release" \
+      -scheme "MyApp" \
       -configuration Release \
       CODE_SIGN_IDENTITY="" \
       CODE_SIGNING_REQUIRED=NO \
