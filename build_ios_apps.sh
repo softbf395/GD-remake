@@ -64,19 +64,6 @@ EOF
   echo "IPA path: $ipa_path"
   echo "$ipa_path"  # Return the IPA path
  # if [[ -f "$ipa_path" ]]; then
-    echo "$project_name IPA probably built successfully at $ipa_path."
-    
-    # Add, commit, and push the IPA file to the repository
-    git config --global user.name "github-actions[bot]"
-    git config --global user.email "github-actions[bot]@users.noreply.github.com"
-    git checkout -b $ipa_path || git checkout $ipa_path || git checkout RBXRemake.xcodeproj
-    git add "$ipa_path"
-    git commit -m "Add $project_name IPA build artifact"
-    #git push origin build-artifacts
-#  else
-   # echo "Error: IPA file not found at $ipa_path."
-   # exit 1
-  #fi
 }
 
 # Build RBXRemake
