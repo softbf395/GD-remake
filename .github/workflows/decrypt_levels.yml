@@ -1,0 +1,44 @@
+name: Decrypt Geometry Dash Levels
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  decrypt:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Fetch all history for accurate commits
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install requests
+
+    - name: Run decryption script
+      run: |
+        python decrypt_levels.py
+
+    - name: Commit decrypted levels
+      run: |
+        git config --local user.name "github-actions"
+        git config --local user.email "github-actions@github.com"
+        git add GDRemake/ios/code/levels/
+        git commit -m "Add decrypted Geometry Dash levels" || echo "No changes to commit"
+        git push origin main  # Adjust the branch name if necessary
+
+    - name: Upload Decrypted Levels
+      uses: actions/upload-artifact@v3
+      with:
+        name: decrypted-levels
+        path: GDRemake/ios/code/levels/
