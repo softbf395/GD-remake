@@ -53,6 +53,7 @@ EOF
       CODE_SIGNING_REQUIRED=NO \
       CODE_SIGNING_ALLOWED=NO \
       PROVISIONING_PROFILE_SPECIFIER=""
+      -archivePath "$project_name.xcarchive"
 
   # Export the IPA
   echo "Exporting $project_name IPA..."
