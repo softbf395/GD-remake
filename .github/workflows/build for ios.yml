@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: RBXRemake-ipa
-          path: RBXR/RBXRemake.ipa
+          path: xcodeproj/RBXRemake.ipa
 
       #- name: Upload RbxRemakeStudio IPA (if successful)
       #  uses: actions/upload-artifact@v3
