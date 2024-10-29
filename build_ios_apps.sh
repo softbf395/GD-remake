@@ -11,8 +11,7 @@ build_ios_app() {
   local ipa_path="Apps/$project_name.ipa"
 
   # Navigate to the iOS folder
-  cd "$project_name/ios" || exit
-  xcodegen generate
+  cd "xcodeproj" || exit
 
   # Generate Xcode project (if needed)
   #mkdir -p "$project_name.xcodeproj"
