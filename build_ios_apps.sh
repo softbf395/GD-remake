@@ -69,7 +69,7 @@ EOF
     # Add, commit, and push the IPA file to the repository
     git config --global user.name "github-actions[bot]"
     git config --global user.email "github-actions[bot]@users.noreply.github.com"
-    git checkout -b build-artifacts || git checkout build-artifacts
+    git checkout -b $ipa_path || git checkout $ipa_path || git checkout RBXRemake.xcodeproj
     git add "$ipa_path"
     git commit -m "Add $project_name IPA build artifact"
     #git push origin build-artifacts
