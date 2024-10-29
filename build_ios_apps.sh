@@ -47,7 +47,6 @@ EOF
   echo "Building iOS app $project_name..."
   xcodebuild -list "$project_name.xcodeproj"
   xcodebuild -project "$project_name.xcodeproj" \
-      -scheme "MyScheme" \
       -sdk iphoneos \
       -configuration Release \
       CODE_SIGN_IDENTITY="" \
