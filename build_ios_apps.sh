@@ -57,7 +57,7 @@ EOF
   # Export the IPA
   echo "Exporting $project_name IPA..."
   xcodebuild -exportArchive \
-      -archivePath "build/$project_name.xcarchive" \
+      -archivePath "$project_name.xcarchive" \
       -exportOptionsPlist exportOptions.plist \
       -exportPath "$ipa_path"
 
