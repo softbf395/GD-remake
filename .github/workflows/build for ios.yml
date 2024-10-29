@@ -15,6 +15,10 @@ jobs:
       - name: Give Build Script chmod
         run: chmod +x ./build_ios_apps.sh
 
+      - name: Initialize Build Script
+        run: |
+          brew install xcodegen
+
       - name: Run build script
         run: ./build_ios_apps.sh
         env:
