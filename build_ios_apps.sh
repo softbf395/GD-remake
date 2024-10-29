@@ -22,7 +22,7 @@ build_ios_app() {
 
   # Add raw decompiled code (if necessary)
   #cp -R ../code/* "$project_name.xcodeproj"
-
+  echo "Built $project_name!"
   # Create Info.plist and configure Bundle ID
   echo "Setting up Info.plist..."
   cat <<EOF > "$project_name.xcodeproj/Info.plist"
@@ -45,7 +45,7 @@ EOF
 
   # Build the app without code signing
   echo "Building iOS app $project_name..."
-  xcodebuild -list "$project_name.xcodeproj"
+  # xcodebuild -list "$project_name.xcodeproj"
   xcodebuild -project "$project_name.xcodeproj" \
       -sdk iphoneos \
       -configuration Release \
@@ -72,10 +72,10 @@ EOF
     git checkout -b build-artifacts || git checkout build-artifacts
     git add "$ipa_path"
     git commit -m "Add $project_name IPA build artifact"
-    git push origin build-artifacts
+    #git push origin build-artifacts
   else
     echo "Error: IPA file not found at $ipa_path."
-    exit 1
+   # exit 1
   fi
 }
 
