@@ -63,7 +63,10 @@ EOF
 
   echo "IPA path: $ipa_path"
   echo "$ipa_path"  # Return the IPA path
- # if [[ -f "$ipa_path" ]]; then
+ if [[ -f "$ipa_path" ]]; then
+ else
+ echo "$ipa_path DOESNT EXIST"
+ fi
 }
 
 # Build RBXRemake
