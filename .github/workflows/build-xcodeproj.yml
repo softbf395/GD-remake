@@ -26,8 +26,8 @@ jobs:
       - name: Upload RBXRemake IPA (if successful)
         uses: actions/upload-artifact@v3
         with:
-          name: RBXRemake-folder
-          path: RBXRemake/ios
+          name: RBXRemake.xcodeproj
+          path: RBXRemake/ios/RBXRemake.xcodeproj
 
       #- name: Upload RbxRemakeStudio IPA (if successful)
       #  uses: actions/upload-artifact@v3
