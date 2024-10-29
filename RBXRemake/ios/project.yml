@@ -26,7 +26,7 @@ targets:
       - sdk: Contacts.framework
       - sdk: libc++.tbd
       - package: Yams
-  MyFramework:
-    type: framework
-    platform: iOS
-    sources: [MyFramework]
+#  MyFramework:
+#    type: framework
+#    platform: iOS
+#    sources: [MyFramework]
