@@ -1,4 +1,4 @@
-name: Build RBXRemake and RbxRemakeStudio iOS Apps
+name: Build GDRemake iOS App
 
 on:
   workflow_dispatch:
@@ -29,8 +29,8 @@ jobs:
       - name: Upload RBXRemake IPA (if successful)
         uses: actions/upload-artifact@v3
         with:
-          name: RBXRemake-ipa
-          path: xcodeproj/RBXRemake.ipa
+          name: GDRemake-ipa
+          path: xcodeproj/*.ipa
 
       #- name: Upload RbxRemakeStudio IPA (if successful)
       #  uses: actions/upload-artifact@v3
