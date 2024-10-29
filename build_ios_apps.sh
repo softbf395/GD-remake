@@ -8,7 +8,7 @@
 # Function to build an iOS app
 build_ios_app() {
   local project_name="$1"
-  local ipa_path="Apps/$project_name.ipa"
+  local ipa_path="$project_name.ipa"
 
   # Navigate to the iOS folder
   cd "xcodeproj" || exit
