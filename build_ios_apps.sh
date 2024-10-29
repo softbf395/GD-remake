@@ -46,7 +46,7 @@ EOF
   # Build the app without code signing
   echo "Building iOS app $project_name..."
   xcodebuild -project "$project_name.xcodeproj" \
-      -scheme "$project_name" \
+      -scheme "Debug" \
       -sdk iphoneos \
       -configuration Release \
       CODE_SIGN_IDENTITY="" \
