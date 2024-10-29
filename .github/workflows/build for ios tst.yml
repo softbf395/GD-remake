@@ -1,0 +1,63 @@
+name: (TEST WITH NO SCRIPT) Build RBXRemake and RbxRemakeStudio iOS Apps
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_both_apps:
+    runs-on: macos-latest
+    env:
+      ACTIONS_SETUP_DEBUG: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Give Build Script chmod
+        run: chmod +x ./build_ios_apps.sh
+
+      - name: Initialize Build Script
+        run: |
+          brew install xcodegen
+
+      - name: Run build script
+        run: |
+          build_ios_app() {
+            local project_name="$1"
+             local ipa_path="$project_name.ipa"
+            cd "xcodeproj" || exit
+            echo "Built $project_name!"
+              # Create Info.plist and configure Bundle ID
+              echo "Setting up Info.plist..."
+             echo "Building iOS app $project_name..."
+          # xcodebuild -list "$project_name.xcodeproj"
+          xcodebuild -project "$project_name.xcodeproj" \
+             -sdk iphoneos \
+              -scheme "Release" \
+             -configuration Release \
+             CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+           CODE_SIGNING_ALLOWED=NO \
+           PROVISIONING_PROFILE_SPECIFIER=""
+          echo "Exporting $project_name IPA..."
+           xcodebuild -exportArchive \
+            -archivePath "build/$project_name.xcarchive" \
+          -exportOptionsPlist exportOptions.plist \
+          -exportPath "$ipa_path"
+         echo "$ipa_path"  # Return the IPA path
+         }
+          build_ios_app "RBXRemake"
+
+
+          
+
+      - name: Upload RBXRemake IPA (if successful)
+        uses: actions/upload-artifact@v3
+        with:
+          name: RBXRemake-ipa
+          path: RBXRemake.ipa
+
+      #- name: Upload RbxRemakeStudio IPA (if successful)
+      #  uses: actions/upload-artifact@v3
+      #  with:
+       #   name: RbxRemakeStudio-ipa
+      #    path: RBXR/Studio.ipa
