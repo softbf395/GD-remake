@@ -23,8 +23,8 @@ jobs:
 
     - name: Build with Xcode for iOS
       run: |
-        xcodebuild -project GDRemake.xcodeproj \
-          -scheme GDRemake \
+        xcodebuild -project MyApp.xcodeproj \
+          -scheme MyApp \
           -sdk iphoneos \
           -configuration Release \
           -derivedDataPath build/derivedData \
@@ -33,10 +33,10 @@ jobs:
     - name: Archive .app
       run: |
         mkdir -p build/artifacts
-        cp -R build/derivedData/Build/Products/Release-iphoneos/GDRemake.app build/artifacts
+        cp -R build/derivedData/Build/Products/Release-iphoneos/MyApp.app build/artifacts
 
     - name: Upload .app artifact
       uses: actions/upload-artifact@v3
       with:
         name: ios-app
-        path: build/artifacts/GDRemake.app
+        path: build/artifacts/MyApp.app
