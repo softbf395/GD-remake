@@ -1,63 +1,56 @@
-name: (TEST WITH NO SCRIPT) Build RBXRemake and RbxRemakeStudio iOS Apps
+name: iOS CMake Build (No Provisioning or Code Signing)
 
 on:
   workflow_dispatch:
 
 jobs:
-  build_both_apps:
+  build:
     runs-on: macos-latest
-    env:
-      ACTIONS_SETUP_DEBUG: true
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout source code
+      uses: actions/checkout@v3
 
-      - name: Give Build Script chmod
-        run: chmod +x ./build_ios_apps.sh
+    - name: Set up CMake
+      uses: jwlawson/actions-setup-cmake@v1
+      with:
+        cmake-version: '3.20.0'
 
-      - name: Initialize Build Script
-        run: |
-          brew install xcodegen
+    - name: Install dependencies
+      run: |
+        # Install any additional dependencies if needed
+        brew install ninja
+        brew install cmake
 
-      - name: Run build script
-        run: |
-          build_ios_app() {
-            local project_name="$1"
-             local ipa_path="$project_name.ipa"
-            cd "xcodeproj" || exit
-            echo "Built $project_name!"
-              # Create Info.plist and configure Bundle ID
-              echo "Setting up Info.plist..."
-             echo "Building iOS app $project_name..."
-          # xcodebuild -list "$project_name.xcodeproj"
-          xcodebuild -project "$project_name.xcodeproj" \
-             -sdk iphoneos \
-              -scheme "Release" \
-             -configuration Release \
-             CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-           CODE_SIGNING_ALLOWED=NO \
-           PROVISIONING_PROFILE_SPECIFIER=""
-          echo "Exporting $project_name IPA..."
-           xcodebuild -exportArchive \
-            -archivePath "build/$project_name.xcarchive" \
-          -exportOptionsPlist exportOptions.plist \
-          -exportPath "$ipa_path"
-           echo "$ipa_path"  # Return the IPA path
-          }
-          build_ios_app "RBXRemake"
+    - name: Configure CMake for iOS without Code Signing
+      run: |
+        cmake -S . -B build \
+          -G Xcode \
+          -DCMAKE_SYSTEM_NAME=iOS \
+          -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 \
+          -DCMAKE_OSX_ARCHITECTURES="arm64" \
+          -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_ALLOWED=NO \
+          -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED=NO \
+          -DCMAKE_XCODE_ATTRIBUTE_PROVISIONING_PROFILE="" \
+          -DCMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM="" \
+          -DCMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY=""
 
+    - name: Build with Xcode for iOS
+      run: |
+        xcodebuild -project build/YourProject.xcodeproj \
+          -scheme YourScheme \
+          -sdk iphoneos \
+          -configuration Release \
+          -derivedDataPath build/derivedData \
+          CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO PROVISIONING_PROFILE_SPECIFIER="" CODE_SIGN_IDENTITY="" DEVELOPMENT_TEAM=""
 
-          
+    - name: Archive .app
+      run: |
+        # Replace with the correct path to your .app file
+        mkdir -p build/artifacts
+        cp -R build/derivedData/Build/Products/Release-iphoneos/YourApp.app build/artifacts
 
-      - name: Upload RBXRemake IPA (if successful)
-        uses: actions/upload-artifact@v3
-        with:
-          name: RBXRemake-ipa
-          path: RBXRemake.ipa
-
-      #- name: Upload RbxRemakeStudio IPA (if successful)
-      #  uses: actions/upload-artifact@v3
-      #  with:
-       #   name: RbxRemakeStudio-ipa
-      #    path: RBXR/Studio.ipa
+    - name: Upload .app artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ios-app
+        path: build/artifacts/YourApp.app
