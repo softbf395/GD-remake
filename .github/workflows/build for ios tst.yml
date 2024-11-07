@@ -23,6 +23,7 @@ jobs:
 
     - name: Build with Xcode for iOS
       run: |
+        cd GDRemake/ios
         xcodebuild -project GDRemake.xcodeproj \
           -scheme MyApp \
           -sdk iphoneos \
@@ -32,6 +33,7 @@ jobs:
 
     - name: Archive .app
       run: |
+        cd GDRemake/ios
         mkdir -p build/artifacts
         cp -R build/derivedData/Build/Products/Release-iphoneos/GDRemake.app build/artifacts
 
