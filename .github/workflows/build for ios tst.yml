@@ -42,9 +42,15 @@ jobs:
         cd GDRemake/ios
         mkdir -p build/artifacts
         cp -R build/derivedData/Build/Products/Release-iphoneos/GDRemake.app build/artifacts
+        cp -R build/derivedData/Build/Products/Release-iphoneos/MyFramework.framework build/artifacts
 
     - name: Upload .app artifact
       uses: actions/upload-artifact@v3
       with:
         name: ios-app
         path: build/artifacts/GDRemake.app
+    - name: Upload .framework artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ios-app
+        path: build/artifacts/MyFramework.framework
